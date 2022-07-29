@@ -36,7 +36,7 @@ public static class UI
         _scrollRect = _consolePrefab.GetComponentInChildren<ScrollRect>(true);
         Text = _consolePrefab.transform.Find("Scroll View/Viewport/Content/")
                          .GetComponentInChildren<TextMeshProUGUI>(true);
-        SetLayerRecursively(_consolePrefab, 15);
+        SetLayerRecursively(_consolePrefab, 31);
         foreach (var i in ConsoleManager.Cached)
             AppendText(i);
         MelonPreferences.Save();
@@ -57,7 +57,7 @@ public static class UI
         UiCameraObj = gameobj;
         UiCamera = cam;
         UiCamera.clearFlags = CameraClearFlags.Depth;
-        UiCamera.cullingMask = 1 << 15;
+        UiCamera.cullingMask = 1 << 31;
     }
     
     public static void SetLayerRecursively(GameObject go, int layerNumber)
