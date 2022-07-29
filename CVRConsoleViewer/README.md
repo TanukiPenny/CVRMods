@@ -1,6 +1,6 @@
 # CVRConsoleViewer
 
-A standalone mod that adds a mirror of your MelonLoader console to your Quickmenu!!
+A standalone mod that adds a mirror of your MelonLoader console to your Quickmenu!
 
 ### MelonLoader
 Need to install MelonLoader?<br>
