@@ -47,7 +47,7 @@ public static class UI
     private static void SetupCamera()
     {
         var mainCam = Camera.main;
-        var gameobj = new GameObject("CVRCL");
+        var gameobj = new GameObject("CVRConsoleViewer");
         var cam = gameobj.AddComponent<Camera>();
         cam.CopyFrom(mainCam);
         gameobj.transform.parent = mainCam.transform;

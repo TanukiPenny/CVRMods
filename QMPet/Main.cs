@@ -24,7 +24,7 @@ public class Main : MelonMod
     {
         qmPetCategory = MelonPreferences.CreateCategory("QMPet", "QMPet");
         scale = qmPetCategory.CreateEntry("scale", 1.3f, "Pet Scale");
-
+        Log.Msg("QMPet Loaded");
         CheckFolder();
         LoadImgs();
     }
