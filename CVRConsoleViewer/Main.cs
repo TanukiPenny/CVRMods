@@ -7,7 +7,7 @@ namespace CVRConsoleViewer;
 public static class BuildShit
 {
     public const string Name = "CVRConsoleViewer";
-    public const string Author = "Penny";
+    public const string Author = "Penny, Davi";
     public const string Version = "1.0.0";
     public const string DownloadLink = "https://github.com/PennyBunny/CVRMods/";
     public const string Description = "A standalone mod to see your MelonLoader logs in game!";
