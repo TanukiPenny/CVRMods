@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ABI_RC.Core.InteractionSystem;
@@ -7,6 +8,7 @@ using MelonLoader;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR;
 using Object = UnityEngine.Object;
 
 namespace CVRConsoleViewer;
@@ -33,6 +35,7 @@ public static class UI
         _consolePrefab = Object.Instantiate(BundleManager._consolePrefab, qm.transform);
         _consolePrefab.transform.localPosition = new Vector3(-0.72f, 0, 0);
         _consolePrefab.transform.localScale = new Vector3(0.0013f, 0.0013f, 0.0013f);
+        
         _scrollRect = _consolePrefab.GetComponentInChildren<ScrollRect>(true);
         Text = _consolePrefab.transform.Find("Scroll View/Viewport/Content/")
                          .GetComponentInChildren<TextMeshProUGUI>(true);
@@ -50,7 +53,14 @@ public static class UI
         var gameobj = new GameObject("CVRConsoleViewer");
         var cam = gameobj.AddComponent<Camera>();
         cam.CopyFrom(mainCam);
-        gameobj.transform.parent = mainCam.transform;
+        if (XRDevice.isPresent && Environment.GetCommandLineArgs().Contains("-vr"))
+        {
+            gameobj.transform.parent = mainCam.transform.parent;
+        }
+        else
+        {
+            gameobj.transform.parent = mainCam.transform;
+        }
         gameobj.transform.localPosition = Vector3.zero;
         gameobj.transform.localRotation = Quaternion.identity;
         gameobj.transform.localScale = Vector3.one;
@@ -59,7 +69,7 @@ public static class UI
         UiCamera.clearFlags = CameraClearFlags.Depth;
         UiCamera.cullingMask = 1 << 31;
     }
-    
+
     public static void SetLayerRecursively(GameObject go, int layerNumber)
     {
         foreach (Transform trans in go.GetComponentsInChildren<Transform>(true))

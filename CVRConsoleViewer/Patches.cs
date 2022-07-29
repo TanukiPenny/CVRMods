@@ -1,6 +1,8 @@
-﻿using ABI_RC.Core.InteractionSystem;
+﻿using System.Collections;
+using ABI_RC.Core.InteractionSystem;
 using HarmonyLib;
 using MelonLoader;
+using UnityEngine;
 
 namespace CVRConsoleViewer;
 
@@ -19,8 +21,14 @@ public class Patches
 
     public static void ToggleQmPatch(bool __0)
     {
-        if(UI._consolePrefab == null) return;
-        UI._consolePrefab.SetActive(__0);
+        MelonCoroutines.Start(ToggleDelay(__0));
+    }
+
+    private static IEnumerator ToggleDelay(bool aaa)
+    {
+        yield return new WaitForSeconds(.2f);
+        if(UI._consolePrefab == null) yield break;
+        UI._consolePrefab.SetActive(aaa);
         UI.ResetOffsets();
     }
 }
