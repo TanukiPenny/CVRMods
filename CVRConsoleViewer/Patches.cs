@@ -21,5 +21,6 @@ public class Patches
     {
         if(UI._consolePrefab == null) return;
         UI._consolePrefab.SetActive(__0);
+        UI.ResetOffsets();
     }
 }
