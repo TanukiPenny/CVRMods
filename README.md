@@ -2,4 +2,4 @@
 
 ChilloutVR Mods
 
-I have not affiliation ABI and am not supported by ABI in any way.
+I have no affiliation ABI and am not supported by ABI in any way.
