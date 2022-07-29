@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CVRConsoleViewer", "CVRConsoleViewer\CVRConsoleViewer.csproj", "{051BD313-4AEA-4FD2-BFB5-40C5DC6D9E66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QMPet", "QMPet\QMPet.csproj", "{D0FC2245-480B-4676-A5C1-6809F53B7203}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{051BD313-4AEA-4FD2-BFB5-40C5DC6D9E66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{051BD313-4AEA-4FD2-BFB5-40C5DC6D9E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{051BD313-4AEA-4FD2-BFB5-40C5DC6D9E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{051BD313-4AEA-4FD2-BFB5-40C5DC6D9E66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0FC2245-480B-4676-A5C1-6809F53B7203}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0FC2245-480B-4676-A5C1-6809F53B7203}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0FC2245-480B-4676-A5C1-6809F53B7203}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0FC2245-480B-4676-A5C1-6809F53B7203}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
