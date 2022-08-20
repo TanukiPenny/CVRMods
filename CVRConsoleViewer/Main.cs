@@ -8,7 +8,7 @@ public static class BuildShit
 {
     public const string Name = "CVRConsoleViewer";
     public const string Author = "Penny, Davi";
-    public const string Version = "1.0.2";
+    public const string Version = "1.0.3";
     public const string DownloadLink = "https://github.com/PennyBunny/CVRMods/";
     public const string Description = "A standalone mod to see your MelonLoader logs in game!";
 }
@@ -53,6 +53,6 @@ public class Main : MelonMod
     public override void OnSceneWasLoaded(int buildIndex, string sceneName)
     {
         if (!Camera.main) return;
-        Camera.main.cullingMask &= ~(1 << 31);
+        Camera.main.cullingMask &= ~(1 << 9);
     }
 }

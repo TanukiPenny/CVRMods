@@ -1,3 +1,6 @@
 obj/
 bin/
 .idea
+/CVRConsoleViewer/
+/FOVAdjust/
+/QMPet/

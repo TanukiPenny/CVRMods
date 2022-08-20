@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using ABI_RC.Core.Player;
 using MelonLoader;
 using UnityEngine;
 
@@ -15,22 +16,31 @@ public static class BuildShit
     
 public class Main : MelonMod
 {
-    private static readonly MelonLogger.Instance Log = new(BuildShit.Name, System.ConsoleColor.DarkYellow);
-
-    private static Camera _mainCamera, _uiCamera;
+    public static readonly MelonLogger.Instance Log = new(BuildShit.Name, System.ConsoleColor.DarkYellow);
+    public static HarmonyLib.Harmony MyHarmony = new("FOVAdjust");
+    public static Camera MainCamera;
+    private static Camera _uiCamera;
     private static readonly int UIlayer = 1 << 30;
+    private static readonly int UINum = 30;
     private static GameObject _mainUi;
+    private static MelonPreferences_Category _fovAdjust;
+    public static MelonPreferences_Entry<float> FOV;
         
     public override void OnApplicationStart()
     {
+        _fovAdjust = MelonPreferences.CreateCategory("FOVAdjust", "FOVAdjust");
+        FOV = _fovAdjust.CreateEntry("fov", 60f, "FOV",
+            "Field of view that your game will use");
         MelonCoroutines.Start(WaitForUi());
         Log.Msg("FOVAdjust Loaded");
     }
-    
-    public override void OnSceneWasLoaded(int buildIndex, string sceneName)
+
+    public override void OnUpdate()
     {
-        if (!_mainCamera) return;
-        _mainCamera.cullingMask &= ~(1 << 31);
+        if (Input.GetKeyDown(KeyCode.Insert))
+        {
+            SetFOV(FOV.Value);
+        }
     }
 
     private static IEnumerator WaitForUi()
@@ -42,22 +52,26 @@ public class Main : MelonMod
     private static void SetUp()
     {
         _mainUi = GameObject.Find("Cohtml");
-        _mainCamera = Camera.main;
-        _uiCamera = CamTools.SetupCamera("FOVAdjust", _mainCamera, UIlayer);
+        MainCamera = Camera.main;
+        _uiCamera = CamTools.SetupCamera("FOVAdjust", MainCamera, UIlayer);
         SetLayers();
-        SetFOV(90);
+        SetFOV(FOV.Value);
         Log.Msg("Setup Complete!");
     }
 
     private static void SetLayers()
     {
-        _mainUi.transform.Find("CohtmlWorldView").gameObject.layer = UIlayer;
-        _mainUi.transform.Find("QuickMenu").gameObject.layer = UIlayer;
-        _mainCamera.transform.Find("CohtmlHud").gameObject.layer = UIlayer;
+        _mainUi.transform.Find("CohtmlWorldView").gameObject.layer = UINum;
+        _mainUi.transform.Find("QuickMenu").gameObject.layer = UINum;
+        MainCamera.transform.Find("CohtmlHud").gameObject.layer = UINum;
+        Log.Msg("Layers Set!");
     }
 
-    private static void SetFOV(int fov)
+    public static void SetFOV(float fov)
     {
-        _mainCamera.fieldOfView = fov;
+        if (!MainCamera) return;
+        CVR_DesktopCameraController.defaultFov = fov;
+        CVR_DesktopCameraController.UpdateFov();
+        Log.Msg("FOV Changed");
     }
 }

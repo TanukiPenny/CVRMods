@@ -27,7 +27,6 @@ public static class UI
         BuildMenu();
     }
     
-
     private static void BuildMenu()
     {
         Patches.PatchShit();
@@ -39,7 +38,7 @@ public static class UI
         _scrollRect = _consolePrefab.GetComponentInChildren<ScrollRect>(true);
         Text = _consolePrefab.transform.Find("Scroll View/Viewport/Content/")
                          .GetComponentInChildren<TextMeshProUGUI>(true);
-        SetLayerRecursively(_consolePrefab, 31);
+        SetLayerRecursively(_consolePrefab, 9);
         foreach (var i in ConsoleManager.Cached)
             AppendText(i);
         MelonPreferences.Save();
@@ -63,11 +62,12 @@ public static class UI
         }
         gameobj.transform.localPosition = Vector3.zero;
         gameobj.transform.localRotation = Quaternion.identity;
+        gameobj.transform.localRotation = Quaternion.identity;
         gameobj.transform.localScale = Vector3.one;
         UiCameraObj = gameobj;
         UiCamera = cam;
         UiCamera.clearFlags = CameraClearFlags.Depth;
-        UiCamera.cullingMask = 1 << 31;
+        UiCamera.cullingMask = 1 << 9;
     }
 
     public static void SetLayerRecursively(GameObject go, int layerNumber)
