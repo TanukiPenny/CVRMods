@@ -85,7 +85,6 @@ public static class Patches
     public static void PlayerJoin(CVRPlayerEntity p)
     {
         CvrPlayerEntities.Add(p);
-        Log.Msg($"{p.Username}: Has joined");
         var tempobj = Object.Instantiate(Bundle.camObject);
         tempobj.SetActive(false);
         tempobj.name = p.Username;
@@ -98,7 +97,6 @@ public static class Patches
     {
         var player = CvrPlayerEntities.FirstOrDefault(playerEntity => p.Username == playerEntity.Username);
         if (player == null) return;
-        Log.Msg($"{p.Username}: Has Left");
         var tempobj = CameraObjects.FirstOrDefault(tempobj => p.Username == tempobj.name);
         CameraObjects.Remove(tempobj);
         CvrPlayerEntities.Remove(player);

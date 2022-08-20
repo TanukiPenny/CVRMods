@@ -29,7 +29,7 @@ public class CameraIndicator : MelonMod
         Bundle.Init();
     }
 
-    public override void OnUpdate()
+    public override void OnLateUpdate()
     {
         foreach (var cameraObject in CameraObjects)
         {
@@ -43,8 +43,10 @@ public class CameraIndicator : MelonMod
                 cameraObject.SetActive(false);
                 continue;
             }
-            cameraObject.transform.position = player.PuppetMaster.PlayerAvatarMovementDataInput.CameraPosition;
-            cameraObject.transform.rotation = Quaternion.Euler(player.PuppetMaster.PlayerAvatarMovementDataInput.CameraRotation);
+            //cameraObject.transform.position = player.PuppetMaster.PlayerAvatarMovementDataInput.CameraPosition;
+            cameraObject.transform.position = Vector3.Lerp(cameraObject.transform.position, player.PuppetMaster.PlayerAvatarMovementDataInput.CameraPosition, 20f * Time.deltaTime);
+            //cameraObject.transform.rotation = Quaternion.Euler(player.PuppetMaster.PlayerAvatarMovementDataInput.CameraRotation);
+            cameraObject.transform.rotation = Quaternion.Lerp(cameraObject.transform.rotation, Quaternion.Euler(player.PuppetMaster.PlayerAvatarMovementDataInput.CameraRotation), 20f * Time.deltaTime);
         }
     }
 }
