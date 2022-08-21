@@ -22,7 +22,7 @@ public class CameraIndicator : MelonMod
 {
     public static readonly MelonLogger.Instance Log = new(BuildShit.Name, ConsoleColor.DarkYellow);
     public static List<CVRPlayerEntity> CvrPlayerEntities = new();
-    public static List<GameObject> CameraObjects = new();
+    public static List<CameraObject> CameraObjects = new();
 
     public override void OnApplicationStart()
     {
@@ -33,20 +33,20 @@ public class CameraIndicator : MelonMod
     {
         foreach (var cameraObject in CameraObjects)
         {
-            var player = CvrPlayerEntities.FirstOrDefault(player => player.Username == cameraObject.name);
+            var player = CvrPlayerEntities.FirstOrDefault(player => player.Username == cameraObject.CamTran.name);
+            if (player == null) return;
             if (player.PuppetMaster.PlayerAvatarMovementDataInput.CameraEnabled)
             {
-                cameraObject.SetActive(true);
+                cameraObject.CamTran.SetActive(true);
             }
             else
             {
-                cameraObject.SetActive(false);
+                cameraObject.CamTran.SetActive(false);
                 continue;
             }
-            //cameraObject.transform.position = player.PuppetMaster.PlayerAvatarMovementDataInput.CameraPosition;
-            cameraObject.transform.position = Vector3.Lerp(cameraObject.transform.position, player.PuppetMaster.PlayerAvatarMovementDataInput.CameraPosition, 20f * Time.deltaTime);
-            //cameraObject.transform.rotation = Quaternion.Euler(player.PuppetMaster.PlayerAvatarMovementDataInput.CameraRotation);
-            cameraObject.transform.rotation = Quaternion.Lerp(cameraObject.transform.rotation, Quaternion.Euler(player.PuppetMaster.PlayerAvatarMovementDataInput.CameraRotation), 20f * Time.deltaTime);
+            cameraObject.CamTran.transform.position = Vector3.Lerp(cameraObject.CamTran.transform.position, player.PuppetMaster.PlayerAvatarMovementDataInput.CameraPosition, 20f * Time.deltaTime);
+            cameraObject.CamRot.transform.rotation = Quaternion.Lerp(cameraObject.CamRot.transform.rotation, Quaternion.Euler(player.PuppetMaster.PlayerAvatarMovementDataInput.CameraRotation + new Vector3(90f, 0, 0)), 20f * Time.deltaTime);
+            cameraObject.NameTag.transform.LookAt(Camera.main.transform);
         }
     }
 }

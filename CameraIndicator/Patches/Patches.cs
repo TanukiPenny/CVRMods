@@ -5,6 +5,7 @@ using System.Reflection;
 using ABI_RC.Core.Networking;
 using ABI_RC.Core.Player;
 using HarmonyLib;
+using TMPro;
 using UnityEngine;
 using static CameraIndicator.CameraIndicator;
 using Object = UnityEngine.Object;
@@ -74,7 +75,7 @@ class NetworkManagerPatches
         CvrPlayerEntities.Clear();
         foreach (var cameraObject in CameraObjects)
         {
-            Object.Destroy(cameraObject);
+            Object.Destroy(cameraObject.CamTran.transform.parent.gameObject);
         }
         CameraObjects.Clear();
     }
@@ -86,20 +87,22 @@ public static class Patches
     {
         CvrPlayerEntities.Add(p);
         var tempobj = Object.Instantiate(Bundle.camObject);
-        tempobj.SetActive(false);
-        tempobj.name = p.Username;
-        tempobj.transform.localScale = new Vector3(.03f, .03f, .03f);
-        Object.Destroy(tempobj.GetComponent<BoxCollider>());
-        CameraObjects.Add(tempobj);
+        var tempcamobject = new CameraObject(tempobj,tempobj.transform.GetChild(0).gameObject,
+            tempobj.transform.GetChild(1).GetChild(0).gameObject,
+            tempobj.transform.GetChild(1).GetChild(0).GetComponent<UnityEngine.UI.Text>());
+        tempcamobject.CamTran.SetActive(false);
+        tempcamobject.CamTran.name = p.Username;
+        tempcamobject.NameText.text = p.Username;
+        CameraObjects.Add(tempcamobject);
     }
 
     public static void PlayerLeave(CVRPlayerEntity p)
     {
         var player = CvrPlayerEntities.FirstOrDefault(playerEntity => p.Username == playerEntity.Username);
         if (player == null) return;
-        var tempobj = CameraObjects.FirstOrDefault(tempobj => p.Username == tempobj.name);
-        CameraObjects.Remove(tempobj);
+        var tempcamobject = CameraObjects.FirstOrDefault(tempcamobject => p.Username == tempcamobject.CamTran.name);
+        CameraObjects.Remove(tempcamobject);
         CvrPlayerEntities.Remove(player);
-        Object.Destroy(tempobj);
+        Object.Destroy(tempcamobject.CamTran.transform.parent.gameObject);
     }
 }
