@@ -306,6 +306,8 @@
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=051bd313_002D4aea_002D4fd2_002Dbfb5_002D40c5dc6d9e66_0023CVRConsoleViewer/@EntryIndexedValue">True</s:Boolean>
 	
+	
 	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=d0fc2245_002D480b_002D4676_002Da5c1_002D6809f53b7203_0023QMPet/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=f9044184_002D22ae_002D4589_002D8e4b_002D87d8a588a7d7_0023FOVAdjust/@EntryIndexedValue">True</s:Boolean>
+	
 	</wpf:ResourceDictionary>

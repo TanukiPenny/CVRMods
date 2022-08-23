@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,10 +24,21 @@ public class CameraIndicator : MelonMod
     public static readonly MelonLogger.Instance Log = new(BuildShit.Name, ConsoleColor.DarkYellow);
     public static List<CVRPlayerEntity> CvrPlayerEntities = new();
     public static List<CameraObject> CameraObjects = new();
+    public static GameObject Base;
+    private static bool _ready;
 
     public override void OnApplicationStart()
     {
         Bundle.Init();
+    }
+
+    public override void OnSceneWasLoaded(int buildIndex, string sceneName)
+    {
+        if (sceneName != "Headquarters" && !_ready) return;
+        CvrPlayerEntities.Clear();
+        CameraObjects.Clear();
+        Base = new GameObject("CameraIndicator");
+        _ready = true;
     }
 
     public override void OnLateUpdate()

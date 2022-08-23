@@ -64,45 +64,42 @@ class CVRPlayerEntityLeave
     }
 }
 
-[HarmonyPatch(typeof(NetworkManager))]
-class NetworkManagerPatches
-{
-    // Token: 0x06000046 RID: 70 RVA: 0x00003DA0 File Offset: 0x00001FA0
-    [HarmonyPatch("OnGameNetworkConnectionClosed")]
-    [HarmonyPostfix]
-    private static void OnGameNetworkClosed()
-    {
-        CvrPlayerEntities.Clear();
-        foreach (var cameraObject in CameraObjects)
-        {
-            Object.Destroy(cameraObject.CamTran.transform.parent.gameObject);
-        }
-        CameraObjects.Clear();
-    }
-}
-
 public static class Patches
 {
     public static void PlayerJoin(CVRPlayerEntity p)
     {
-        CvrPlayerEntities.Add(p);
-        var tempobj = Object.Instantiate(Bundle.camObject);
-        var tempcamobject = new CameraObject(tempobj,tempobj.transform.GetChild(0).gameObject,
-            tempobj.transform.GetChild(1).GetChild(0).gameObject,
-            tempobj.transform.GetChild(1).GetChild(0).GetComponent<UnityEngine.UI.Text>());
-        tempcamobject.CamTran.SetActive(false);
-        tempcamobject.CamTran.name = p.Username;
-        tempcamobject.NameText.text = p.Username;
-        CameraObjects.Add(tempcamobject);
+        try
+        {
+            CvrPlayerEntities.Add(p);
+            var tempobj = Object.Instantiate(Bundle.camObject, Base.transform);
+            var tempcamobject = new CameraObject(tempobj,tempobj.transform.GetChild(0).gameObject,
+                tempobj.transform.GetChild(1).GetChild(0).gameObject,
+                tempobj.transform.GetChild(1).GetChild(0).GetComponent<UnityEngine.UI.Text>());
+            tempcamobject.CamTran.SetActive(false);
+            tempcamobject.CamTran.name = p.Username;
+            tempcamobject.NameText.text = p.Username;
+            CameraObjects.Add(tempcamobject);
+        }
+        catch (Exception e)
+        {
+            Log.Error(e);
+        }
     }
 
     public static void PlayerLeave(CVRPlayerEntity p)
     {
-        var player = CvrPlayerEntities.FirstOrDefault(playerEntity => p.Username == playerEntity.Username);
-        if (player == null) return;
-        var tempcamobject = CameraObjects.FirstOrDefault(tempcamobject => p.Username == tempcamobject.CamTran.name);
-        CameraObjects.Remove(tempcamobject);
-        CvrPlayerEntities.Remove(player);
-        Object.Destroy(tempcamobject.CamTran.transform.parent.gameObject);
+        try
+        {
+            var player = CvrPlayerEntities.FirstOrDefault(playerEntity => p.Username == playerEntity.Username);
+            if (player == null) return;
+            var tempcamobject = CameraObjects.FirstOrDefault(tempcamobject => p.Username == tempcamobject.CamTran.name);
+            CameraObjects.Remove(tempcamobject);
+            CvrPlayerEntities.Remove(player);
+            Object.Destroy(tempcamobject.CamTran);
+        }
+        catch (Exception e)
+        {
+            Log.Error(e);
+        }
     }
 }
