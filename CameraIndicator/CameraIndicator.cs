@@ -14,9 +14,9 @@ public static class BuildShit
 {
     public const string Name = "CameraIndicator";
     public const string Author = "Penny";
-    public const string Version = "1.0.0";
+    public const string Version = "1.0.1";
     public const string DownloadLink = "https://github.com/PennyBunny/CVRMods/";
-    public const string Description = "-----------------------------------------";
+    public const string Description = "A mod that gives you a indicator of where other players cameras are postioned";
 }
     
 public class CameraIndicator : MelonMod
