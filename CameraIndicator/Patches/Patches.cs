@@ -70,15 +70,14 @@ public static class Patches
     {
         try
         {
-            CvrPlayerEntities.Add(p);
-            var tempobj = Object.Instantiate(Bundle.camObject, Base.transform);
-            var tempcamobject = new CameraObject(tempobj,tempobj.transform.GetChild(0).gameObject,
-                tempobj.transform.GetChild(1).GetChild(0).gameObject,
-                tempobj.transform.GetChild(1).GetChild(0).GetComponent<UnityEngine.UI.Text>());
-            tempcamobject.CamTran.SetActive(false);
-            tempcamobject.CamTran.name = p.Username;
-            tempcamobject.NameText.text = p.Username;
-            CameraObjects.Add(tempcamobject);
+            var camGameObject = Object.Instantiate(Bundle.camObject, Base.transform);
+            var camObject = new CameraObject(p, camGameObject,camGameObject.transform.GetChild(0).gameObject,
+                camGameObject.transform.GetChild(1).GetChild(0).gameObject,
+                camGameObject.transform.GetChild(1).GetChild(0).GetComponent<UnityEngine.UI.Text>());
+            camObject.CamTran.SetActive(false);
+            camObject.CamTran.name = p.Username;
+            camObject.NameText.text = p.Username;
+            CameraObjects.Add(camObject);
         }
         catch (Exception e)
         {
@@ -90,12 +89,9 @@ public static class Patches
     {
         try
         {
-            var player = CvrPlayerEntities.FirstOrDefault(playerEntity => p.Username == playerEntity.Username);
-            if (player == null) return;
-            var tempcamobject = CameraObjects.FirstOrDefault(tempcamobject => p.Username == tempcamobject.CamTran.name);
-            CameraObjects.Remove(tempcamobject);
-            CvrPlayerEntities.Remove(player);
-            Object.Destroy(tempcamobject.CamTran);
+            var camobject = CameraObjects.FirstOrDefault(camobject => p.Username == camobject.PlayerEntity.Username);
+            CameraObjects.Remove(camobject);
+            Object.Destroy(camobject.CamTran);
         }
         catch (Exception e)
         {
