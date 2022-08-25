@@ -14,7 +14,7 @@ public static class BuildShit
 {
     public const string Name = "CameraIndicator";
     public const string Author = "Penny";
-    public const string Version = "1.0.2";
+    public const string Version = "1.0.3";
     public const string DownloadLink = "https://github.com/PennyBunny/CVRMods/";
     public const string Description = "A mod that gives you a indicator of where other players cameras are postioned";
 }
@@ -45,7 +45,7 @@ public class CameraIndicator : MelonMod
         foreach (var cameraObject in CameraObjects)
         {
             var player = cameraObject.PlayerEntity;
-            if (player == null) continue;
+            if (player.PlayerObject == null) continue;
             if (player.PuppetMaster.PlayerAvatarMovementDataInput.CameraEnabled)
             {
                 cameraObject.CamTran.SetActive(true);
