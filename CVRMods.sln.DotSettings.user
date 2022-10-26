@@ -1,4 +1,12 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CProgram_0020Files_0020_0028x86_0029_005CSteam_005Csteamapps_005Ccommon_005CChilloutVR_005CChilloutVR_005FData_005CManaged_005CAssembly_002DCSharp_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CProgram_0020Files_0020_0028x86_0029_005CSteam_005Csteamapps_005Ccommon_005CChilloutVR_005CChilloutVR_005FData_005CManaged_005Ccohtml_002ENet_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CProgram_0020Files_0020_0028x86_0029_005CSteam_005Csteamapps_005Ccommon_005CChilloutVR_005CChilloutVR_005FData_005CManaged_005CCohtml_002ERuntime_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CProgram_0020Files_0020_0028x86_0029_005CSteam_005Csteamapps_005Ccommon_005CChilloutVR_005CChilloutVR_005FData_005CManaged_005CUnityEngine_002ECoreModule_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CProgram_0020Files_0020_0028x86_0029_005CSteam_005Csteamapps_005Ccommon_005CChilloutVR_005CChilloutVR_005FData_005CManaged_005CUnityEngine_002EInputLegacyModule_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CProgram_0020Files_0020_0028x86_0029_005CSteam_005Csteamapps_005Ccommon_005CChilloutVR_005CChilloutVR_005FData_005CManaged_005CUnityEngine_002EInputModule_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CProgram_0020Files_0020_0028x86_0029_005CSteam_005Csteamapps_005Ccommon_005CChilloutVR_005CMelonLoader_005C0Harmony_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CProgram_0020Files_0020_0028x86_0029_005CSteam_005Csteamapps_005Ccommon_005CChilloutVR_005CMelonLoader_005CMelonLoader_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=P_003A_005CSteamLibrary_005Csteamapps_005Ccommon_005CChilloutVR_005CChilloutVR_005FData_005CManaged_005CAccessibility_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=P_003A_005CSteamLibrary_005Csteamapps_005Ccommon_005CChilloutVR_005CChilloutVR_005FData_005CManaged_005CAssembly_002DCSharp_002Dfirstpass_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=P_003A_005CSteamLibrary_005Csteamapps_005Ccommon_005CChilloutVR_005CChilloutVR_005FData_005CManaged_005CAssembly_002DCSharp_002Edll/@EntryIndexedValue">True</s:Boolean>
@@ -304,10 +312,11 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="P:\SteamLibrary\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\Assembly-CSharp.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
-	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=051bd313_002D4aea_002D4fd2_002Dbfb5_002D40c5dc6d9e66_0023CVRConsoleViewer/@EntryIndexedValue">True</s:Boolean>
 	
 	
-	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=d0fc2245_002D480b_002D4676_002Da5c1_002D6809f53b7203_0023QMPet/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=f9044184_002D22ae_002D4589_002D8e4b_002D87d8a588a7d7_0023FOVAdjust/@EntryIndexedValue">True</s:Boolean>
+	
+	
+	
+	
 	
 	</wpf:ResourceDictionary>

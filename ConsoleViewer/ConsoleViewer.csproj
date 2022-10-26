@@ -4,11 +4,11 @@
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{F0BF73D2-C250-49F3-A203-F460B3757AC6}</ProjectGuid>
+        <ProjectGuid>{17880FCA-8DCB-4B42-B408-217C674CC26D}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>CameraIndicator</RootNamespace>
-        <AssemblyName>CameraIndicator</AssemblyName>
+        <RootNamespace>ConsoleViewer</RootNamespace>
+        <AssemblyName>ConsoleViewer</AssemblyName>
         <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <LangVersion>preview</LangVersion>
@@ -33,16 +33,16 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="0Harmony">
-          <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\MelonLoader\0Harmony.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
         <Reference Include="Assembly-CSharp">
-          <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\Assembly-CSharp.dll</HintPath>
+          <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\Assembly-CSharp.dll</HintPath>
           <Private>False</Private>
         </Reference>
-        <Reference Include="DarkRift">
-          <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\DarkRift.dll</HintPath>
+        <Reference Include="cohtml.Net">
+          <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\cohtml.Net.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Cohtml.Runtime">
+          <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\Cohtml.Runtime.dll</HintPath>
           <Private>False</Private>
         </Reference>
         <Reference Include="MelonLoader">
@@ -53,36 +53,22 @@
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
         <Reference Include="System.Xml" />
-        <Reference Include="Unity.TextMeshPro">
-          <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\Unity.TextMeshPro.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="UnityEngine.AssetBundleModule">
-          <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
         <Reference Include="UnityEngine.CoreModule">
-          <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+          <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
           <Private>False</Private>
         </Reference>
-        <Reference Include="UnityEngine.PhysicsModule">
-          <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+        <Reference Include="UnityEngine.InputLegacyModule">
+          <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
           <Private>False</Private>
         </Reference>
-        <Reference Include="UnityEngine.UI">
-          <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\UnityEngine.UI.dll</HintPath>
+        <Reference Include="UnityEngine.InputModule">
+          <HintPath>..\..\..\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\UnityEngine.InputModule.dll</HintPath>
           <Private>False</Private>
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Bundle.cs" />
-        <Compile Include="CameraIndicator.cs" />
-        <Compile Include="CameraObject.cs" />
-        <Compile Include="Patches\Patches.cs" />
+        <Compile Include="ConsoleViewer.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-    </ItemGroup>
-    <ItemGroup>
-      <EmbeddedResource Include="cameraindicator" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

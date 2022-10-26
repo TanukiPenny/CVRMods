@@ -11,9 +11,9 @@ using static CameraIndicator.CameraIndicator;
 using Object = UnityEngine.Object;
 using OpCodes = System.Reflection.Emit.OpCodes;
 
-namespace CameraIndicator.Patches;
-
-[HarmonyPatch]
+namespace CameraIndicator.Patches
+{
+    [HarmonyPatch]
 class CVRPlayerManagerJoin
 {
     private static readonly MethodInfo _targetMethod = typeof(List<CVRPlayerEntity>).GetMethod("Add", BindingFlags.Public | BindingFlags.Instance);
@@ -98,4 +98,5 @@ public static class Patches
             Log.Error(e);
         }
     }
+}
 }
