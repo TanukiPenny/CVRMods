@@ -51,13 +51,11 @@
   background: #292929;
   border-radius: 10px;
 }
-.CVUI .main-container .console-root .console-text {
-  margin-left: auto;
-  margin-right: auto;
+.CVUI .main-container .console-root {
+  display: flex;
+  flex-direction: column;
+}
+.CVUI .main-container .console-text {
   display: inline;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-  font-size: 35px;
 }
 /*# sourceMappingURL=CVUI.css.map */

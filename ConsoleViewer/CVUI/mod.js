@@ -26,12 +26,13 @@ cvr.menu.prototype.CVUI = {
         menu.templates["CVUI-icon"] = {c:"CVUI-icon", s: [{c: "icon"}], x: "CVUI-open", a: {"id" : "CVUI-IconBtn"}}
         menu.templates["CVUI-menu"] = {c: "CVUI menu-category hide", s: [
                 {c: "container container-main", s: [
-                    {c: "main-container", s: [{c: "scroll-view", s:[{c: "console-root content-subpage scroll-content", a:{"id" : "CVUI-LogRoot"}, s:[
+                    {c: "main-container", s: [{c: "scroll-view", s:[{c: "console-root scroll-content", a:{"id" : "CVUI-LogRoot"}, s:[
                                 ]}, {c: "scroll-marker-v"}]}]},
                     {c: "container-back", s:[{c: "back-icon"}, {c: "content", h: "Back to main screen"}], x: "switchCategory", a: {"data-category": "quickmenu-home"}},
                     ]}
             ]}
-        menu.templates["CVUILog"] = {c: "console-text", a: {"id" : "CVUI-console-text"}, h: "[log]"}
+
+        menu.templates["CVUILog"] = {c: "console-text", h: "[log]"}
 
         menu.templates["core-quickmenu"].l.push("CVUI-icon");
         menu.templates["core-quickmenu"].l.push("CVUI-menu");
