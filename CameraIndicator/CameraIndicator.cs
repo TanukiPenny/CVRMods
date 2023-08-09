@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using ABI_RC.Core.Player;
+using ABI_RC.Systems.GameEventSystem;
 using MelonLoader;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -14,7 +13,7 @@ namespace CameraIndicator
     {
         public const string Name = "CameraIndicator";
         public const string Author = "Penny";
-        public const string Version = "1.0.4";
+        public const string Version = "1.0.6";
         public const string DownloadLink = "https://github.com/PennyBunny/CVRMods/";
 
         public const string Description =
@@ -23,22 +22,26 @@ namespace CameraIndicator
 
     public class CameraIndicator : MelonMod
     {
-        public static readonly MelonLogger.Instance Log = new(BuildShit.Name, ConsoleColor.DarkYellow);
-        public static List<CameraObject> CameraObjects = new();
+        public static readonly MelonLogger.Instance Log = new(BuildShit.Name, System.Drawing.Color.FromArgb(128, 128, 0));
+        public static readonly List<CameraObject> CameraObjects = new();
         public static GameObject Base;
-        private static bool _ready;
+        private static bool _initialized;
 
         public override void OnInitializeMelon()
         {
             Bundle.Init();
-        }
 
-        public override void OnSceneWasLoaded(int buildIndex, string sceneName)
-        {
-            if (sceneName != "Headquarters" && !_ready) return;
-            CameraObjects.Clear();
-            Base = new GameObject("CameraIndicator");
-            _ready = true;
+            CVRGameEventSystem.World.OnLoad.AddListener(worldGuid => {
+
+                if (!_initialized) {
+                    CVRPlayerManager.Instance.OnPlayerEntityCreated += PlayerJoin;
+                    CVRPlayerManager.Instance.OnPlayerEntityRecycled += PlayerLeave;
+                    _initialized = true;
+                }
+
+                CameraObjects.Clear();
+                Base = new GameObject("CameraIndicator");
+            });
         }
 
         public override void OnLateUpdate()
@@ -63,6 +66,39 @@ namespace CameraIndicator
                     Quaternion.Euler(player.PuppetMaster.PlayerAvatarMovementDataInput.CameraRotation +
                                      new Vector3(90f, 0, 0)), 20f * Time.deltaTime);
                 cameraObject.NameTag.transform.LookAt(Camera.main.transform);
+            }
+        }
+
+        private static void PlayerJoin(CVRPlayerEntity p)
+        {
+            try
+            {
+                var camGameObject = Object.Instantiate(Bundle.CamObject, Base.transform);
+                var camObject = new CameraObject(p, camGameObject,camGameObject.transform.GetChild(0).gameObject,
+                    camGameObject.transform.GetChild(1).GetChild(0).gameObject,
+                    camGameObject.transform.GetChild(1).GetChild(0).GetComponent<UnityEngine.UI.Text>());
+                camObject.CamTran.SetActive(false);
+                camObject.CamTran.name = p.Username;
+                camObject.NameText.text = p.Username;
+                CameraObjects.Add(camObject);
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+            }
+        }
+
+        private static void PlayerLeave(CVRPlayerEntity p)
+        {
+            try
+            {
+                var camObject = CameraObjects.FirstOrDefault(camObject => p.Username == camObject.PlayerEntity.Username);
+                if (!CameraObjects.Remove(camObject)) return;
+                Object.Destroy(camObject?.CamTran);
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
             }
         }
     }

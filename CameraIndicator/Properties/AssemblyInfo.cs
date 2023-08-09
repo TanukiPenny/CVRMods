@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿using System.Reflection;
 using System.Runtime.InteropServices;
 using MelonLoader;
 using CameraIndicator;
@@ -20,5 +18,6 @@ using CameraIndicator;
 [assembly: AssemblyFileVersion(BuildShit.Version)]
 [assembly: MelonInfo(typeof(CameraIndicator.CameraIndicator), BuildShit.Name, BuildShit.Version, BuildShit.Author, BuildShit.DownloadLink)]
 [assembly: MelonGame("Alpha Blend Interactive", "ChilloutVR")]
-[assembly: MelonColor(ConsoleColor.DarkYellow)]
+[assembly: MelonColor(255, 230, 161, 255)]
 [assembly: MelonPriority(int.MinValue)]
+[assembly: MelonAdditionalCredits("kafeijao")]
