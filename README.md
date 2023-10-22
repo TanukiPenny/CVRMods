@@ -2,4 +2,4 @@
 
 ChilloutVR Mods
 
-The mods on this repo are not supported or affiliated by ABI.
+The mods on this repo are not supported by or affiliated with ABI.
