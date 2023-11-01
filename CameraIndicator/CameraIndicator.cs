@@ -13,7 +13,7 @@ namespace CameraIndicator
     {
         public const string Name = "CameraIndicator";
         public const string Author = "Penny";
-        public const string Version = "1.0.6";
+        public const string Version = "1.0.7";
         public const string DownloadLink = "https://github.com/PennyBunny/CVRMods/";
 
         public const string Description =
@@ -22,6 +22,10 @@ namespace CameraIndicator
 
     public class CameraIndicator : MelonMod
     {
+        public static MelonPreferences_Category cat;
+        private const string catagory = "CameraIndicator";
+        public static MelonPreferences_Entry<bool> showIndicators;
+
         public static readonly MelonLogger.Instance Log = new(BuildShit.Name, System.Drawing.Color.FromArgb(128, 128, 0));
         public static readonly List<CameraObject> CameraObjects = new();
         public static GameObject Base;
@@ -30,6 +34,10 @@ namespace CameraIndicator
         public override void OnInitializeMelon()
         {
             Bundle.Init();
+
+            cat = MelonPreferences.CreateCategory(catagory, "CameraIndicator");
+            showIndicators = MelonPreferences.CreateEntry(catagory, nameof(showIndicators), true, "Show Camera Indicators (Defaults to On every launch)");
+            showIndicators.Value = true; //Defaults to on every game launch
 
             CVRGameEventSystem.World.OnLoad.AddListener(worldGuid => {
 
@@ -50,7 +58,7 @@ namespace CameraIndicator
             {
                 var player = cameraObject.PlayerEntity;
                 if (player.PlayerObject == null) continue;
-                if (player.PuppetMaster.PlayerAvatarMovementDataInput.CameraEnabled)
+                if (player.PuppetMaster.PlayerAvatarMovementDataInput.CameraEnabled && showIndicators.Value)
                 {
                     cameraObject.CamTran.SetActive(true);
                 }
@@ -74,6 +82,7 @@ namespace CameraIndicator
             try
             {
                 var camGameObject = Object.Instantiate(Bundle.CamObject, Base.transform);
+                camGameObject.transform.GetChild(0).gameObject.layer = 5; //Hide from CVR Camera by changing object to UI layer
                 var camObject = new CameraObject(p, camGameObject,camGameObject.transform.GetChild(0).gameObject,
                     camGameObject.transform.GetChild(1).GetChild(0).gameObject,
                     camGameObject.transform.GetChild(1).GetChild(0).GetComponent<UnityEngine.UI.Text>());
